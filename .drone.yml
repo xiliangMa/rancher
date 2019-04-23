@@ -364,6 +364,25 @@ steps:
     event:
     - push
 
+- name: push-master-3rd-party-manifest
+  image: plugins/docker
+  commands:
+    - ./scripts/publish-manifests.sh
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+  privileged: true
+  volumes:
+  - name: docker
+    path: /var/run/docker.sock
+  when:
+    branch:
+    - master
+    event:
+    - push
+
 - name: push-manifest
   image: plugins/manifest:1.0.2
   settings:
@@ -461,7 +480,7 @@ name: publish
 
 platform:
   os: linux
-  arch: amd64 
+  arch: amd64
 
 steps:
 - name: chart-promote
