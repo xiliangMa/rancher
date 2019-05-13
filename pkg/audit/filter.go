@@ -62,6 +62,8 @@ func (aw *wrapWriter) WriteHeader(statusCode int) {
 }
 
 func (aw *wrapWriter) Write(body []byte) (int, error) {
+	// fix cors issue
+	aw.Header().Set("Access-Control-Allow-Origin", "*")
 	aw.buf.Write(body)
 	return aw.ResponseWriter.Write(body)
 }
