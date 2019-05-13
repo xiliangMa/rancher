@@ -1,0 +1,5 @@
+docker rm -f $(docker ps -aq)
+docker volume rm -f $(docker volume ls -q)
+clndirs="var/lib/etcd /etc/kubernetes /etc/cni /opt/cni /varl/lib/cni /var/run/calico"
+for dir in $clndirs ; do  echo "remove dir: $dir"; rm -fr $dir ; done
+

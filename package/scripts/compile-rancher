@@ -1,0 +1,4 @@
+cd /usr/lib/go-1.10/src/github.com/rancher/rancher
+./scripts/build-server
+cp ./bin/rancher /usr/bin  
+chmod +x /usr/bin/rancher
